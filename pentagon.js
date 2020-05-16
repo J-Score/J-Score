@@ -1,4 +1,4 @@
-export default function generatePentagon(data) {
+function generatePentagon(data) {
   let sides = 5;
 
   // let data = [[

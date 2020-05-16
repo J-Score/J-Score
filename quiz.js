@@ -163,7 +163,7 @@
     dy_ai_score : [0, 0, 0, 0, 0],
     gay_score: [5, 5, 5, 5, 5]
   }, {
-    question: "Is your name jake?",
+    question: "SMASH",
     options: ["Yes", "No"],
     yuki_ai_score: [0, 0],
     flake_score: [0, 0],
@@ -209,6 +209,7 @@
   var quizSpace = $('#quiz');
 
   nextQuestion();
+  displayResult();
 
   $('#next').click(function () {
     chooseOption();
@@ -296,6 +297,7 @@
     
     
     score.append('You are Jake');
+    generatePentagon([[0.5, 0.5, 0.5, 0.5, 0.5]]);
     return score;
   }
 })();
