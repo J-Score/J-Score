@@ -1,5 +1,7 @@
 function generatePentagon(data) {
-  let sides = 5;
+  let sides = data[0].length;
+
+  console.log(data);
 
   // let data = [[
   //   0.7045,
@@ -10,6 +12,7 @@ function generatePentagon(data) {
   // ]];
   
   let el = document.getElementById("polygon-chart");
+  el.style.display = "block";
   
   let chart = new PolygonChart({
     target: el,

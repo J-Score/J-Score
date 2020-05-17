@@ -209,7 +209,6 @@
   var quizSpace = $('#quiz');
 
   nextQuestion();
-  displayResult();
 
   $('#next').click(function () {
     chooseOption();
@@ -289,15 +288,51 @@
   function displayResult() {
     var score = $('<p>', { id: 'question' });
 
-    var yuki_ai = 0;
-    var flake = 0;
-    var trash_jungle = 0;
-    var omega_stink = 0;
-    var dy_ai = 0;
-    
+    let yuki_ai_score = 0;
+    let flake_score = 0;
+    let trash_gamer_score = 0;
+    let omega_stink_score = 0;
+    let dy_ai_score = 0;
+    let gay_score = 0;
+
+    let max_yuki_ai_score = 0;
+    let max_flake_score = 0;
+    let max_trash_gamer_score = 0;
+    let max_omega_stink_score = 0;
+    let max_dy_ai_score = 0;
+    let max_gay_score = 0;
+    for (let i = 0; i < allQuestions.length; ++i) {
+      yuki_ai_score += allQuestions[i].yuki_ai_score[selectOptions[i]];
+      flake_score += allQuestions[i].flake_score[selectOptions[i]];
+      trash_gamer_score += allQuestions[i].trash_gamer_score[selectOptions[i]];
+      omega_stink_score += allQuestions[i].omega_stink_score[selectOptions[i]];
+      dy_ai_score += allQuestions[i].dy_ai_score[selectOptions[i]];
+      gay_score += allQuestions[i].gay_score[selectOptions[i]];
+
+      max_yuki_ai_score += Math.max(...allQuestions[i].yuki_ai_score);
+      max_flake_score += Math.max(...allQuestions[i].flake_score);
+      max_trash_gamer_score += Math.max(...allQuestions[i].trash_gamer_score);
+      max_omega_stink_score += Math.max(...allQuestions[i].omega_stink_score);
+      max_dy_ai_score += Math.max(...allQuestions[i].dy_ai_score);
+      max_gay_score += Math.max(...allQuestions[i].gay_score);
+    } 
     
     score.append('You are Jake');
-    generatePentagon([[0.5, 0.5, 0.5, 0.5, 0.5]]);
+    generatePentagon([[
+      get_score(yuki_ai_score, max_yuki_ai_score),
+      get_score(flake_score, max_flake_score),
+      get_score(trash_gamer_score, max_trash_gamer_score),
+      get_score(omega_stink_score, max_omega_stink_score),
+      get_score(dy_ai_score, max_dy_ai_score),
+      get_score(gay_score, max_gay_score)
+    ]]);
     return score;
+  }
+
+  function get_score(score, max_score) {
+    if (score <= 0 || max_score <= 0) {
+      return 0;
+    }
+    return score / max_score;
   }
 })();
